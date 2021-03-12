@@ -1,0 +1,10 @@
+black
+coverage
+flake8
+pytest
+pytest-runner
+Sphinx
+tox
+wheel
+
+--editable .
