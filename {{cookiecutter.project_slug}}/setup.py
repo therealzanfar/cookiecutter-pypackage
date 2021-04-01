@@ -23,7 +23,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     keywords="",
-    url="https://gitlab.com/{{cookiecutter.gitlab_username}}/{{cookiecutter.project_slug}}",
+    url="{{cookiecutter.git_url}}",
     packages=find_packages(),
     license="GPLv3",
     classifiers=[

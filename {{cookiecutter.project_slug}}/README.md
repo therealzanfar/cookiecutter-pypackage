@@ -4,7 +4,7 @@
 
 ## Installation
 
-    pip install git+https://gitlab.com/{{cookiecutter.gitlab_username}}/{{cookiecutter.project_slug}}.git
+    pip install git+{{cookiecutter.git_url}}.git
 
 
 ## Credits
