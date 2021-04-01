@@ -2,10 +2,6 @@
 import logging
 import sys
 
-from typing import Any, Optional, Union
-from typing import Sequence, List, Tuple, Mapping, Dict
-from typing import TypedDict, NewType, TypeVar, cast
-
 import click
 
 """Console script for {{cookiecutter.project_slug}}."""
@@ -18,7 +14,8 @@ def setup_logging(verbosity: int = 0):
     """Setup a root logger with console output
 
     Args:
-        verbosity (int, optional): The logging level; 0=Error, 1=Warning, 2=Info, 3+=Debug. Defaults to 0.
+        verbosity (int, optional): The logging level; 0=Error, 1=Warning,
+            2=Info, 3+=Debug. Defaults to 0.
     """
 
     root_logger = logging.getLogger()
@@ -40,7 +37,9 @@ def setup_logging(verbosity: int = 0):
     elif verbosity >= 3:
         console_handler.setLevel("DEBUG")
     else:
-        logger.critical("Unexplained negative count while setting handler verbosity")
+        logger.critical(
+            "Unexplained negative count while setting handler verbosity"
+        )
 
     root_logger.addHandler(console_handler)
 
@@ -53,9 +52,12 @@ def main(verbose: int) -> int:
     vars = locals().items()
     setup_logging(verbose)
     logger = logging.getLogger(__name__)
-    logger.debug(f"Running with options: {', '.join(f'{k}={v!r}' for k,v in vars)}")
+    logger.debug(
+        f"Running with options: {', '.join(f'{k}={v!r}' for k,v in vars)}"
+    )
 
     return 0
+
 
 if __name__ == "__main__":
     sys.exit(main())
