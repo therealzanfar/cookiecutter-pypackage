@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "cookiecutter-pypackage"
+version = "0.1.2"
+description = "A Cookiecutter Template for a Python Package"
+authors = ["Matthew Wyant <me@matthewwyant.com>"]
+license = "GPLv3"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+cookiecutter = "^1.7.3"
+
+[tool.poetry.dev-dependencies]
+black = "^21.7b0"
+flake8 = "^3.9.2"
+pytest = "^6.2.4"
+tox = "^3.24.1"
+pytest-runner = "^5.3.1"
+pytest-cookies = "^0.6.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -1,9 +1,0 @@
-black
-coverage
-cookiecutter
-flake8
-pytest
-pytest-cookies
-pytest-runner
-Sphinx
-tox

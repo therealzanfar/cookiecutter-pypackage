@@ -3,9 +3,7 @@ import datetime
 import os
 import shlex
 import subprocess
-import sys
 
-from click.testing import CliRunner
 from cookiecutter.utils import rmtree
 
 
@@ -34,7 +32,7 @@ def bake_in_temp_dir(cookies, *args, **kwargs):
     try:
         yield result
     finally:
-        rmtree(str(result.project))
+        rmtree(str(result.project_path))
 
 
 def run_inside_dir(command, dirpath):
@@ -55,20 +53,17 @@ def check_output_inside_dir(command, dirpath):
 
 def test_bake_with_defaults(cookies):
     with bake_in_temp_dir(cookies) as result:
-        assert result.project.isdir()
+        assert result.project_path.is_dir()
         assert result.exit_code == 0
         assert result.exception is None
 
-        found_toplevel_files = [f.basename for f in result.project.listdir()]
+        found_toplevel_files = [f.name for f in result.project_path.iterdir()]
         for expected in [
             ".editorconfig",
             ".gitignore",
             "LICENSE",
-            "MANIFEST.in",
-            "mkenv.sh",
             "pyproject.toml",
             "README.md",
-            "setup.py",
             "tox.ini",
         ]:
             assert expected in found_toplevel_files
@@ -76,37 +71,23 @@ def test_bake_with_defaults(cookies):
 
 def test_year_compute_in_license_file(cookies):
     with bake_in_temp_dir(cookies) as result:
-        license_file_path = result.project.join("LICENSE")
+        license_file_path = result.project_path / "LICENSE"
         now = datetime.datetime.now()
-        assert str(now.year) in license_file_path.read()
+        with license_file_path.open("r") as f:
+            assert str(now.year) in f.read()
 
 
 def test_bake_and_run_tests(cookies):
     with bake_in_temp_dir(cookies) as result:
-        assert result.project.isdir()
-        run_inside_dir("python setup.py test", str(result.project)) == 0
-        print("test_bake_and_run_tests path", str(result.project))
-
-
-def test_bake_withspecialchars_and_run_tests(cookies):
-    """Ensure that a `full_name` with double quotes does not break setup.py"""
-    with bake_in_temp_dir(
-        cookies, extra_context={"full_name": 'name "quote" name'}
-    ) as result:
-        assert result.project.isdir()
-        run_inside_dir("python setup.py test", str(result.project)) == 0
+        assert result.project_path.is_dir()
+        run_inside_dir("poetry run pytest", str(result.project_path)) == 0
+        print("test_bake_and_run_tests path", str(result.project_path))
 
 
 def test_bake_with_apostrophe_and_run_tests(cookies):
     """Ensure that a `full_name` with apostrophes does not break setup.py"""
-    with bake_in_temp_dir(cookies, extra_context={"full_name": "O'connor"}) as result:
-        assert result.project.isdir()
-        run_inside_dir("python setup.py test", str(result.project)) == 0
-
-
-def test_make_help(cookies):
-    with bake_in_temp_dir(cookies) as result:
-        # The supplied Makefile does not support win32
-        if sys.platform != "win32":
-            output = check_output_inside_dir("make help", str(result.project))
-            assert b"check code coverage quickly with the default Python" in output
+    with bake_in_temp_dir(
+        cookies, extra_context={"full_name": "O'connor"}
+    ) as result:
+        assert result.project_path.is_dir()
+        run_inside_dir("poetry run pytest", str(result.project_path)) == 0

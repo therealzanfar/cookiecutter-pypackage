@@ -8,6 +8,9 @@ run_cmd = lambda args: subprocess.run(
 
 
 def main() -> int:
+    print("Building Python Environment")
+    run_cmd(["poetry", "install"])
+
     print("Initializing Git repository")
     run_cmd(["git", "init"])
     run_cmd(["git", "remote", "add", "origin", "{{cookiecutter.git_url}}.git"])
