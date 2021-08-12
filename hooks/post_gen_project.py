@@ -8,12 +8,11 @@ run_cmd = lambda args: subprocess.run(
 
 
 def main() -> int:
-    print("Building development environment...")
-    run_cmd(["./mkenv.sh"])
-
     print("Initializing Git repository")
     run_cmd(["git", "init"])
     run_cmd(["git", "remote", "add", "origin", "{{cookiecutter.git_url}}.git"])
+
+    return 0
 
 
 if __name__ == "__main__":
