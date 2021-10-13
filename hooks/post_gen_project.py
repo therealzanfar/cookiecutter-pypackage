@@ -24,6 +24,9 @@ def main() -> int:
             "test_cli.py",
         )
 
+    if "Proprietary" == "{{ cookiecutter.license }}":
+        remove_file("LICENSE")
+
     print("Building Python Environment")
     run_cmd("poetry install")
     run_cmd("poetry run python3 -m pip install --upgrade pip wheel setuptools")

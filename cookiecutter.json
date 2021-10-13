@@ -16,5 +16,12 @@
         "Click"
     ],
     "github_username": "{{cookiecutter.full_name.lower().replace(' ', '_').replace('-', '_') }}",
-    "git_url": "https://gitlab.com/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}"
+    "git_url": "https://gitlab.com/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}",
+    "license": [
+        "GPL-3.0-only",
+        "BSD-3-Clause",
+        "MIT",
+        "Apache-2.0",
+        "Proprietary"
+    ]
 }

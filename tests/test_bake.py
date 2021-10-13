@@ -120,3 +120,23 @@ def test_bake_with_apostrophe_and_run_tests(cookies):
         assert (
             run_inside_dir("poetry run pytest", str(result.project_path)) == 0
         )
+
+
+def test_bake_selecting_license(cookies):
+    license_strings = {
+        "GPL-3.0-only": "GNU GENERAL PUBLIC LICENSE",
+        "BSD-3-Clause": "BSD 3-Clause License",
+        "MIT": "MIT License",
+        "Apache-2.0": "Licensed under the Apache License, Version 2.0",
+    }
+    for license, target_string in license_strings.items():
+        with bake_in_temp_dir(
+            cookies, extra_context={"license": license}
+        ) as result:
+            inner_dir = get_project_inner_path(result)
+
+            assert find_in_file(
+                result.project_path / "pyproject.toml", license
+            )
+            assert find_in_file(inner_dir / "__init__.py", license)
+            assert find_in_file(result.project_path / "LICENSE", target_string)
