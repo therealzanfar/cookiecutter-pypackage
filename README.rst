@@ -30,7 +30,7 @@ Generate a Python package project
 
 ::
 
-    cookiecutter https://gitlab.com/zanfar/cookiecutter-pypackage.git
+    cookiecutter gl:zanfar/cookiecutter-pypackage
 
 Not Exactly What You Want?
 --------------------------
