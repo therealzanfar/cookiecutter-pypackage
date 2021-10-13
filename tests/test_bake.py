@@ -74,7 +74,7 @@ def test_bake_with_defaults(cookies):
             ".gitignore",
             "LICENSE",
             "pyproject.toml",
-            "README.md",
+            "README.rst",
             "tox.ini",
         ]:
             assert expected in found_toplevel_files
