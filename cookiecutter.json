@@ -11,6 +11,10 @@
         "3.6",
         "3.5"
     ],
+    "command_line_interface": [
+        "No CLI",
+        "Click"
+    ],
     "github_username": "{{cookiecutter.full_name.lower().replace(' ', '_').replace('-', '_') }}",
     "git_url": "https://gitlab.com/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}"
 }

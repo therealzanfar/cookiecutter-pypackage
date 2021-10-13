@@ -1,6 +1,7 @@
 from contextlib import contextmanager
 import datetime
 import os
+from pathlib import Path
 import shlex
 import subprocess
 
@@ -8,12 +9,12 @@ from cookiecutter.utils import rmtree
 
 
 @contextmanager
-def inside_dir(dirpath):
+def inside_dir(dirpath: Path):
     """
     Execute code from inside the given directory
     :param dirpath: String, path of the directory the command is being run.
     """
-    old_path = os.getcwd()
+    old_path = Path.cwd()
     try:
         os.chdir(dirpath)
         yield
@@ -51,6 +52,16 @@ def check_output_inside_dir(command, dirpath):
         return subprocess.check_output(shlex.split(command))
 
 
+def get_project_inner_path(result) -> Path:
+    return result.project_path / result.project_path.name
+
+
+def find_in_file(file: Path, needle: str) -> bool:
+    with open(file, "r") as fh:
+        haystack = fh.read()
+    return needle in haystack
+
+
 def test_bake_with_defaults(cookies):
     with bake_in_temp_dir(cookies) as result:
         assert result.project_path.is_dir()
@@ -80,8 +91,24 @@ def test_year_compute_in_license_file(cookies):
 def test_bake_and_run_tests(cookies):
     with bake_in_temp_dir(cookies) as result:
         assert result.project_path.is_dir()
-        run_inside_dir("poetry run pytest", str(result.project_path)) == 0
-        print("test_bake_and_run_tests path", str(result.project_path))
+        assert (
+            run_inside_dir("poetry run pytest", str(result.project_path)) == 0
+        )
+
+
+def test_bake_with_cli_and_run_tests(cookies):
+    with bake_in_temp_dir(
+        cookies, extra_context={"command_line_interface": "Click"}
+    ) as result:
+        assert result.project_path.is_dir()
+
+        inner_dir = get_project_inner_path(result)
+        inner_files = [f.name for f in inner_dir.iterdir()]
+        assert "__main__.py" in inner_files
+
+        assert (
+            run_inside_dir("poetry run pytest", str(result.project_path)) == 0
+        )
 
 
 def test_bake_with_apostrophe_and_run_tests(cookies):
@@ -90,4 +117,6 @@ def test_bake_with_apostrophe_and_run_tests(cookies):
         cookies, extra_context={"full_name": "O'connor"}
     ) as result:
         assert result.project_path.is_dir()
-        run_inside_dir("poetry run pytest", str(result.project_path)) == 0
+        assert (
+            run_inside_dir("poetry run pytest", str(result.project_path)) == 0
+        )
