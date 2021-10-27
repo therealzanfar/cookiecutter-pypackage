@@ -156,9 +156,6 @@ Thumbs.db #thumbnail cache on Windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode
 
 ### VisualStudioCode ###
-.vscode/*
-!.vscode/tasks.json
-!.vscode/launch.json
 *.code-workspace
 
 ### VisualStudioCode Patch ###
