@@ -20,6 +20,7 @@ def main() -> int:
     if "No CLI" == "{{ cookiecutter.command_line_interface }}":
         remove_file("{{ cookiecutter.project_slug }}", "__main__.py")
         remove_file(
+            "{{ cookiecutter.project_slug }}",
             "tests",
             "test_cli.py",
         )
