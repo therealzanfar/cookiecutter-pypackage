@@ -4,18 +4,44 @@ version = "{{cookiecutter.project_version}}"
 description = "{{cookiecutter.project_short_description}}"
 authors = ["{{cookiecutter.full_name}} <{{cookiecutter.email}}>"]
 license = "{{cookiecutter.license}}"
+# https://pypi.org/classifiers/
+classifiers = [
+    # "Development Status :: 1 - Planning",
+    # "Development Status :: 2 - Pre-Alpha",
+    # "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
+    # "Development Status :: 5 - Production/Stable",
+    # "Development Status :: 6 - Mature",
+    # "Development Status :: 7 - Inactive",
+{%- if cookiecutter.command_line_interface|lower == 'click' %}
+    "Environment :: Console",
+{%- endif %}
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    # "Operating System :: Unix",
+    # "Operating System :: POSIX",
+    # "Operating System :: Microsoft :: Windows",
+    # "Operating System :: MacOS",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities"
+]
 
 [tool.poetry.dependencies]
 python = "^{{cookiecutter.python_min_version}}"
 {%- if cookiecutter.command_line_interface|lower == 'click' %}
 click = "^8.0.1"
-{%- endif %}
 rich = "^10.12.0"
+{%- endif %}
 
 [tool.poetry.dev-dependencies]
 black = "^21.7b0"
 pytest = "^6.2.4"
 wheel = "^0.37.0"
+mypy = "^0.910"
+pylint = "^2.11.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
