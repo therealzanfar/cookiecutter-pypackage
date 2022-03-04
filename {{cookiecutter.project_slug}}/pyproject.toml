@@ -1,3 +1,5 @@
+# cSpell:words {{cookiecutter.project_slug}} POSIX pytest pylint mypy
+
 [tool.poetry]
 name = "{{cookiecutter.project_slug}}"
 version = "{{cookiecutter.project_version}}"
@@ -27,7 +29,12 @@ classifiers = [
     "Topic :: Software Development :: Libraries",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Utilities"
-]
+]{% if cookiecutter.command_line_interface|lower != 'no cli' %}
+
+
+[tool.poetry.scripts]
+{{cookiecutter.project_slug}} = '{{cookiecutter.project_slug}}.__main__:main'
+{%- endif %}
 
 [tool.poetry.dependencies]
 python = "^{{cookiecutter.python_min_version}}"

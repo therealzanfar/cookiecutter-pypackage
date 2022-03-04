@@ -1,11 +1,14 @@
 #! /usr/bin/env python3
+
+# cSpell:words {{cookiecutter.project_slug}}
+
+"""Console script for {{cookiecutter.project_slug}}."""
+
 import logging
 import sys
 
 import click
 from rich.logging import RichHandler
-
-"""Console script for {{cookiecutter.project_slug}}."""
 
 
 CLICK_CONTEXT = {"help_option_names": ["-h", "--help"]}
@@ -37,14 +40,15 @@ def setup_logging(verbosity: int = 0):
 
 @click.command(context_settings=CLICK_CONTEXT)
 @click.option("-v", "--verbose", count=True)
-def main(verbose: int) -> int:
+def main(verbose: int = 0) -> int:
     """Main entry point for {{cookiecutter.project_slug}}"""
 
-    vars = locals().items()
+    args = locals().items()
     setup_logging(verbose)
     logger = logging.getLogger(__name__)
     logger.debug(
-        f"Running with options: {', '.join(f'{k}={v!r}' for k,v in vars)}"
+        "Running with options: %s",
+        ", ".join(f'{k}={v!r}' for k,v in args)
     )
 
     return 0
