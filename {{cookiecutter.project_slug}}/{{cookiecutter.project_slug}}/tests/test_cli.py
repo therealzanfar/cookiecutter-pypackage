@@ -7,17 +7,17 @@
 {%- if cookiecutter.command_line_interface|lower == 'click' %}
 from click.testing import CliRunner
 
-from {{ cookiecutter.project_slug }}.__main__ import main
+from {{ cookiecutter.project_slug }}.__main__ import cli
 
 def test_cli_click():
     """Test the Click CLI"""
 
     runner = CliRunner()
-    result = runner.invoke(main)
+    result = runner.invoke(cli)
 
     assert result.exit_code == 0
 
-    help_result = runner.invoke(main, ["--help"])
+    help_result = runner.invoke(cli, ["--help"])
 
     assert help_result.exit_code == 0
     assert "--help" in help_result.output

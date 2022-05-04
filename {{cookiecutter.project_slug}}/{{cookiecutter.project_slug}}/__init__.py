@@ -8,6 +8,6 @@ __copyright__ = "Copyright {% now 'local', '%Y' %}, {{ cookiecutter.full_name }}
 __credits__ = [__author__]
 __license__ = "{{cookiecutter.license}}"
 __version__ = "{{ cookiecutter.project_version }}"
-__version_info__ = (int(v) for v in "{{cookiecutter.project_version}}".split("."))
+__version_info__ = ({{ cookiecutter.project_version.split(".")[0] | int }}, {{ cookiecutter.project_version.split(".")[1] | int }}, {{ cookiecutter.project_version.split(".")[2] | int }})
 __maintainer__ = __author__
 __status__ = "Prototype"

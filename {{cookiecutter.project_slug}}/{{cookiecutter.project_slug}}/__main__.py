@@ -40,7 +40,7 @@ def setup_logging(verbosity: int = 0):
 
 @click.command(context_settings=CLICK_CONTEXT)
 @click.option("-v", "--verbose", count=True)
-def main(verbose: int = 0) -> int:
+def cli(verbose: int = 0) -> int:
     """Main entry point for {{cookiecutter.project_slug}}"""
 
     args = locals().items()
@@ -55,4 +55,4 @@ def main(verbose: int = 0) -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(cli())

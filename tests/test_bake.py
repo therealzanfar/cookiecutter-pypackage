@@ -1,3 +1,5 @@
+# cSpell:words chdir
+
 from contextlib import contextmanager
 import datetime
 import os
@@ -57,7 +59,7 @@ def get_project_inner_path(result) -> Path:
 
 
 def find_in_file(file: Path, needle: str) -> bool:
-    with open(file, "r") as fh:
+    with open(file, "r", encoding="utf-8") as fh:
         haystack = fh.read()
     return needle in haystack
 
