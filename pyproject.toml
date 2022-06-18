@@ -16,6 +16,10 @@ classifiers = [
     "Topic :: Utilities"
 ]
 
+[tool.pylint.basic]
+good-names-rgxs = ["^[a-z_][a-z]?"]
+no-docstring-rgx = "^_|[Tt]est|[Mm]ock"
+
 [tool.poetry.dependencies]
 python = "^3.8"
 cookiecutter = "^1.7.0"

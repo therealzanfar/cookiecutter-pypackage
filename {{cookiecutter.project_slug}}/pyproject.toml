@@ -36,6 +36,10 @@ classifiers = [
 {{cookiecutter.project_slug}} = '{{cookiecutter.project_slug}}.__main__:cli'
 {%- endif %}
 
+[tool.pylint.basic]
+good-names-rgxs = ["^[a-z_][a-z]?"]
+no-docstring-rgx = "^_|[Tt]est|[Mm]ock"
+
 [tool.poetry.dependencies]
 python = "^{{cookiecutter.python_min_version}}"
 {%- if cookiecutter.command_line_interface|lower == 'click' %}
