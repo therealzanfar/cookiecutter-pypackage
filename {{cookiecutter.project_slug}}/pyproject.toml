@@ -33,7 +33,7 @@ classifiers = [
 
 
 [tool.poetry.scripts]
-{{cookiecutter.project_slug}} = '{{cookiecutter.project_slug}}.__main__:main'
+{{cookiecutter.project_slug}} = '{{cookiecutter.project_slug}}.__main__:cli'
 {%- endif %}
 
 [tool.poetry.dependencies]

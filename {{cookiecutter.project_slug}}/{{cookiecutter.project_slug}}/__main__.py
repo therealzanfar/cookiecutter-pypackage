@@ -48,7 +48,7 @@ def cli(verbose: int = 0) -> int:
     logger = logging.getLogger(__name__)
     logger.debug(
         "Running with options: %s",
-        ", ".join(f'{k}={v!r}' for k,v in args)
+        ", ".join(f'{k!s}={v!r}' for k,v in args)
     )
 
     return 0
