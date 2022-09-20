@@ -76,7 +76,7 @@ def test_bake_with_defaults(cookies):
             ".gitignore",
             "LICENSE",
             "pyproject.toml",
-            "README.rst",
+            "README.md",
             "tox.ini",
         ]:
             assert expected in found_toplevel_files
@@ -126,7 +126,7 @@ def test_bake_with_apostrophe_and_run_tests(cookies):
 
 def test_bake_selecting_license(cookies):
     license_strings = {
-        "GPL-3.0-only": "GNU GENERAL PUBLIC LICENSE",
+        "GPL-3.0-plus": "GNU GENERAL PUBLIC LICENSE",
         "BSD-3-Clause": "BSD 3-Clause License",
         "MIT": "MIT License",
         "Apache-2.0": "Licensed under the Apache License, Version 2.0",

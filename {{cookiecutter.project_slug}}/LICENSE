@@ -1,4 +1,4 @@
-{% if cookiecutter.license == "GPL-3.0-only" -%}
+{% if cookiecutter.license == "GPL-3.0-plus" -%}
 GNU GENERAL PUBLIC LICENSE
                       Version 3, 29 June 2007
 
