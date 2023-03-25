@@ -1,11 +1,11 @@
 # cSpell:words chdir
 
-from contextlib import contextmanager
 import datetime
 import os
-from pathlib import Path
 import shlex
 import subprocess
+from contextlib import contextmanager
+from pathlib import Path
 
 from cookiecutter.utils import rmtree
 
@@ -29,7 +29,7 @@ def bake_in_temp_dir(cookies, *args, **kwargs):
     """
     Delete the temporal directory that is created when executing the tests
     :param cookies: pytest_cookies.Cookies,
-        cookie to be baked and its temporal files will be removed
+        cookie to be baked and its temporal files will be removed.
     """
     result = cookies.bake(*args, **kwargs)
     try:
@@ -49,7 +49,7 @@ def run_inside_dir(command, dirpath):
 
 
 def check_output_inside_dir(command, dirpath):
-    "Run a command from inside a given directory, returning the command output"
+    "Run a command from inside a given directory, returning the command output."
     with inside_dir(dirpath):
         return subprocess.check_output(shlex.split(command))
 
@@ -59,7 +59,7 @@ def get_project_inner_path(result) -> Path:
 
 
 def find_in_file(file: Path, needle: str) -> bool:
-    with open(file, "r", encoding="utf-8") as fh:
+    with open(file, encoding="utf-8") as fh:
         haystack = fh.read()
     return needle in haystack
 
@@ -100,7 +100,8 @@ def test_bake_and_run_tests(cookies):
 
 def test_bake_with_cli_and_run_tests(cookies):
     with bake_in_temp_dir(
-        cookies, extra_context={"command_line_interface": "Click"}
+        cookies,
+        extra_context={"command_line_interface": "Click"},
     ) as result:
         assert result.project_path.is_dir()
 
@@ -114,9 +115,10 @@ def test_bake_with_cli_and_run_tests(cookies):
 
 
 def test_bake_with_apostrophe_and_run_tests(cookies):
-    """Ensure that a `full_name` with apostrophes does not break setup.py"""
+    """Ensure that a `full_name` with apostrophes does not break setup.py."""
     with bake_in_temp_dir(
-        cookies, extra_context={"full_name": "O'connor"}
+        cookies,
+        extra_context={"full_name": "O'connor"},
     ) as result:
         assert result.project_path.is_dir()
         assert (
@@ -133,12 +135,14 @@ def test_bake_selecting_license(cookies):
     }
     for license, target_string in license_strings.items():
         with bake_in_temp_dir(
-            cookies, extra_context={"license": license}
+            cookies,
+            extra_context={"license": license},
         ) as result:
             inner_dir = get_project_inner_path(result)
 
             assert find_in_file(
-                result.project_path / "pyproject.toml", license
+                result.project_path / "pyproject.toml",
+                license,
             )
             assert find_in_file(inner_dir / "__init__.py", license)
             assert find_in_file(result.project_path / "LICENSE", target_string)
