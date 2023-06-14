@@ -1,6 +1,16 @@
 {
     "words": [
+        "{{cookiecutter.project_slug}}",
+        "{{cookiecutter.full_name.split() | join('\",\n        "')}}",
+
+        "rgxs",
+        "POSIX",
+        "pytest",
+        "pylint",
+        "mypy",
+
         "Cookiecutter",
-        "pyupgrade"
+        "pypackage",
+        "zanfar"
     ]
 }

@@ -29,6 +29,7 @@ def main() -> int:
         remove_file("LICENSE")
 
     print("Building Python Environment")
+    run_cmd("poetry env use python{{cookiecutter.python_min_version}}")
     run_cmd("poetry install")
     run_cmd("poetry run python3 -m pip install --upgrade pip wheel setuptools")
 

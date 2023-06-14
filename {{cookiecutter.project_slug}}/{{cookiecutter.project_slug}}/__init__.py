@@ -1,5 +1,3 @@
-# cSpell:words {{cookiecutter.project_slug}}
-
 """{{cookiecutter.project_short_description}}"""
 
 __author__ = """{{ cookiecutter.full_name }}"""

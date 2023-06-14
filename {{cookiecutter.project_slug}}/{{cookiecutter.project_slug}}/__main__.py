@@ -1,7 +1,5 @@
 #! /usr/bin/env python3
 
-# cSpell:words {{cookiecutter.project_slug}}
-
 """Console script for {{cookiecutter.project_slug}}."""
 
 import logging
@@ -14,7 +12,7 @@ from rich.logging import RichHandler
 CLICK_CONTEXT = {"help_option_names": ["-h", "--help"]}
 
 
-def setup_logging(verbosity: int = 0):
+def setup_logging(verbosity: int = 0) -> None:
     """Setup a root logger with console output
 
     Args:
@@ -47,8 +45,7 @@ def cli(verbose: int = 0) -> int:
     setup_logging(verbose)
     logger = logging.getLogger(__name__)
     logger.debug(
-        "Running with options: %s",
-        ", ".join(f'{k!s}={v!r}' for k,v in args)
+        "Running with options: %s", ", ".join(f"{k!s}={v!r}" for k, v in args)
     )
 
     return 0

@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-# cSpell:words {{cookiecutter.project_slug}}
-
 """Test `{{ cookiecutter.project_slug }}` package CLI tests"""
 
 {%- if cookiecutter.command_line_interface|lower == 'click' %}
@@ -9,7 +7,7 @@ from click.testing import CliRunner
 
 from {{ cookiecutter.project_slug }}.__main__ import cli
 
-def test_cli_click():
+def test_cli_click() -> None:
     """Test the Click CLI"""
 
     runner = CliRunner()
