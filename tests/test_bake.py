@@ -1,4 +1,4 @@
-# cSpell:words chdir
+"""Tests for the cookiecutter system."""
 
 import datetime
 import os
@@ -11,9 +11,10 @@ from cookiecutter.utils import rmtree
 
 
 @contextmanager
-def inside_dir(dirpath: Path):
+def inside_dir(dirpath: Path) -> None:
     """
-    Execute code from inside the given directory
+    Execute code from inside the given directory.
+
     :param dirpath: String, path of the directory the command is being run.
     """
     old_path = Path.cwd()
@@ -25,9 +26,10 @@ def inside_dir(dirpath: Path):
 
 
 @contextmanager
-def bake_in_temp_dir(cookies, *args, **kwargs):
+def bake_in_temp_dir(cookies, *args, **kwargs) -> None:
     """
-    Delete the temporal directory that is created when executing the tests
+    Delete the temporal directory that is created when executing the tests.
+
     :param cookies: pytest_cookies.Cookies,
         cookie to be baked and its temporal files will be removed.
     """
@@ -38,9 +40,10 @@ def bake_in_temp_dir(cookies, *args, **kwargs):
         rmtree(str(result.project_path))
 
 
-def run_inside_dir(command, dirpath):
+def run_inside_dir(command: str, dirpath: Path) -> None:
     """
-    Run a command from inside a given directory, returning the exit status
+    Run a command from inside a given directory, returning the exit status.
+
     :param command: Command that will be executed
     :param dirpath: String, path of the directory the command is being run.
     """
@@ -48,8 +51,8 @@ def run_inside_dir(command, dirpath):
         return subprocess.check_call(shlex.split(command))
 
 
-def check_output_inside_dir(command, dirpath):
-    "Run a command from inside a given directory, returning the command output."
+def check_output_inside_dir(command: str, dirpath: Path) -> None:
+    """Run a command from inside a given directory, returning the command output."""
     with inside_dir(dirpath):
         return subprocess.check_output(shlex.split(command))
 
@@ -64,7 +67,7 @@ def find_in_file(file: Path, needle: str) -> bool:
     return needle in haystack
 
 
-def test_bake_with_defaults(cookies):
+def test_bake_with_defaults(cookies) -> None:
     with bake_in_temp_dir(cookies) as result:
         assert result.project_path.is_dir()
         assert result.exit_code == 0
@@ -77,28 +80,25 @@ def test_bake_with_defaults(cookies):
             "LICENSE",
             "pyproject.toml",
             "README.md",
-            "tox.ini",
         ]:
             assert expected in found_toplevel_files
 
 
-def test_year_compute_in_license_file(cookies):
+def test_year_compute_in_license_file(cookies) -> None:
     with bake_in_temp_dir(cookies) as result:
         license_file_path = result.project_path / "LICENSE"
-        now = datetime.datetime.now()
+        now = datetime.datetime.now()  # noqa: DTZ005
         with license_file_path.open("r") as f:
             assert str(now.year) in f.read()
 
 
-def test_bake_and_run_tests(cookies):
+def test_bake_and_run_tests(cookies) -> None:
     with bake_in_temp_dir(cookies) as result:
         assert result.project_path.is_dir()
-        assert (
-            run_inside_dir("poetry run pytest", str(result.project_path)) == 0
-        )
+        assert run_inside_dir("poetry run pytest", str(result.project_path)) == 0
 
 
-def test_bake_with_cli_and_run_tests(cookies):
+def test_bake_with_cli_and_run_tests(cookies) -> None:
     with bake_in_temp_dir(
         cookies,
         extra_context={"command_line_interface": "Click"},
@@ -109,31 +109,27 @@ def test_bake_with_cli_and_run_tests(cookies):
         inner_files = [f.name for f in inner_dir.iterdir()]
         assert "__main__.py" in inner_files
 
-        assert (
-            run_inside_dir("poetry run pytest", str(result.project_path)) == 0
-        )
+        assert run_inside_dir("poetry run pytest", str(result.project_path)) == 0
 
 
-def test_bake_with_apostrophe_and_run_tests(cookies):
+def test_bake_with_apostrophe_and_run_tests(cookies) -> None:
     """Ensure that a `full_name` with apostrophes does not break setup.py."""
     with bake_in_temp_dir(
         cookies,
         extra_context={"full_name": "O'connor"},
     ) as result:
         assert result.project_path.is_dir()
-        assert (
-            run_inside_dir("poetry run pytest", str(result.project_path)) == 0
-        )
+        assert run_inside_dir("poetry run pytest", str(result.project_path)) == 0
 
 
-def test_bake_selecting_license(cookies):
+def test_bake_selecting_license(cookies) -> None:
     license_strings = {
         "GPL-3.0-plus": "GNU GENERAL PUBLIC LICENSE",
         "BSD-3-Clause": "BSD 3-Clause License",
         "MIT": "MIT License",
         "Apache-2.0": "Licensed under the Apache License, Version 2.0",
     }
-    for license, target_string in license_strings.items():
+    for license, target_string in license_strings.items():  # noqa: A001
         with bake_in_temp_dir(
             cookies,
             extra_context={"license": license},

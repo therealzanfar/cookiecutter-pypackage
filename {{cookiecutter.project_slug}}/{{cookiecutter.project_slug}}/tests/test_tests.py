@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """Test `{{ cookiecutter.project_slug }}` package test setup."""
 
 
