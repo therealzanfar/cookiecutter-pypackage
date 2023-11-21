@@ -12,5 +12,5 @@
 
 This package was created with
 [Cookiecutter](https://github.com/audreyr/cookiecutter) and the
-[zanfar/cookiecutter-pypackage](https://gitlab.com/zanfar/cookiecutter-pypackage)
+[therealzanfar/cookiecutter-pypackage](https://github.com/therealzanfar/cookiecutter-pypackage)
 project template.
