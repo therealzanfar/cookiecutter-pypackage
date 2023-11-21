@@ -1,23 +1,23 @@
-#! /usr/bin/env python3
-from pathlib import Path
+"""Post-bake customizations."""  # noqa: INP001
+
+
 import subprocess
 import sys
-
+from pathlib import Path
 
 PROJECT_DIRECTORY = Path.cwd()
 
 
-def remove_file(*filepaths: str):
+def remove_file(*filepaths: str) -> None:  # noqa: D103
     Path(PROJECT_DIRECTORY).joinpath(*filepaths).unlink()
 
 
-run_cmd = lambda args: subprocess.run(
-    args.split(), capture_output=True, check=True, text=True
-)
+def run_cmd(args: str) -> subprocess.CompletedProcess:  # noqa: D103
+    return subprocess.run(args.split(), capture_output=True, check=True, text=True)
 
 
-def main() -> int:
-    if "No CLI" == "{{ cookiecutter.command_line_interface }}":
+def main() -> int:  # noqa: D103
+    if "No CLI" == "{{ cookiecutter.command_line_interface }}":  # noqa: PLR0133
         remove_file("{{ cookiecutter.project_slug }}", "__main__.py")
         remove_file(
             "{{ cookiecutter.project_slug }}",
@@ -25,7 +25,7 @@ def main() -> int:
             "test_cli.py",
         )
 
-    if "Proprietary" == "{{ cookiecutter.license }}":
+    if "Proprietary" == "{{ cookiecutter.license }}":  # noqa: PLR0133
         remove_file("LICENSE")
 
     print("Building Python Environment")
