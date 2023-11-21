@@ -109,11 +109,8 @@ ignore = [
 ]
 unfixable = ["F401", "F841"]
 
-# good-names-rgxs = ["^[a-z_][a-z]?"]
-# no-docstring-rgx = "^_|[Tt]est|[Mm]ock"
-
 [tool.ruff.per-file-ignores]
-"test_*.py" = ["D103"]
+"test_*.py" = ["ANN001", "ANN002", "ANN003", "D103"]
 
 [tool.ruff.pyupgrade]
 keep-runtime-typing = true

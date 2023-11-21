@@ -1,5 +1,3 @@
-#cSpell:words cookiecutter rgxs pypackage mypy pylint pytest Wyant
-
 [tool.poetry]
 name = "cookiecutter-pypackage"
 version = "0.1.4"
@@ -82,9 +80,6 @@ unfixable = [
     "F401",
     "F841",
 ]
-
-# good-names-rgxs = ["^[a-z_][a-z]?"]
-# no-docstring-rgx = "^_|[Tt]est|[Mm]ock"
 
 [tool.ruff.per-file-ignores]
 "test_*.py" = ["ANN001", "ANN002", "ANN003", "D103"]
