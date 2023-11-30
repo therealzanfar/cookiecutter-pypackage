@@ -1,4 +1,4 @@
-{% if cookiecutter.license == "GPL-3.0-plus" -%}
+{% if cookiecutter.license == "GPL-3.0-or-later" -%}
 
     {{ cookiecutter.project_short_description }}
     Copyright (C) {% now 'local', '%Y' %}  {{ cookiecutter.full_name }}

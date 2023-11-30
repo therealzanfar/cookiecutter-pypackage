@@ -4,9 +4,16 @@ version = "{{cookiecutter.project_version}}"
 description = "{{cookiecutter.project_short_description}}"
 authors = ["{{cookiecutter.full_name}} <{{cookiecutter.email}}>"]
 license = "{{cookiecutter.license}}"
+readme = "README.md"
+# homepage = ""
+repository = "{{cookiecutter.git_url}}"
+# documentation = ""
+# keywords = [""]
+include = ["LICENSE"]
 
-# https://pypi.org/classifiers/
+
 classifiers = [
+    # https://pypi.org/classifiers/
     # "Development Status :: 1 - Planning",
     # "Development Status :: 2 - Pre-Alpha",
     # "Development Status :: 3 - Alpha",
@@ -36,22 +43,25 @@ classifiers = [
     # "Operating System :: Microsoft :: Windows",
     # "Operating System :: MacOS",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3 :: {{cookiecutter.python_min_version}}",
+    "Programming Language :: Python :: {{cookiecutter.python_min_version}}",
     "Topic :: Software Development :: Libraries",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Utilities"
 ]{% if cookiecutter.command_line_interface|lower != 'no cli' %}
 
 
+# https://pypi.org/classifiers/
 [tool.poetry.scripts]
 {{cookiecutter.project_slug}} = '{{cookiecutter.project_slug}}.__main__:cli_main'
 {%- endif %}
 
 [tool.poetry.dependencies]
-python = "^{{cookiecutter.python_min_version}}"
+
 {%- if cookiecutter.command_line_interface|lower == 'click' %}
-click = "^8.1.7"
+
 {%- endif %}
+python = "^{{cookiecutter.python_min_version}}"
+click = "^8.1.7"
 rich = "^13.7.0"
 
 [tool.poetry.dev-dependencies]
