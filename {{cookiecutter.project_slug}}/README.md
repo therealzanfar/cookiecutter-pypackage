@@ -6,6 +6,8 @@
 
 ## Installation
 
+Requires Python {{ python_min_version }} or later.
+
     python3 -m pip install git+{{cookiecutter.git_url}}.git
 
 ## Credits

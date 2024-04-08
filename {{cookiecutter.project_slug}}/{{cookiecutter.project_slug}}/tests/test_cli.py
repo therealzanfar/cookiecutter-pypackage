@@ -1,4 +1,4 @@
-"""Test `{{ cookiecutter.project_slug }}` package CLI tests"""
+"""Test `{{ cookiecutter.project_slug }}` package CLI tests."""
 
 {%- if cookiecutter.command_line_interface|lower == 'click' %}
 from click.testing import CliRunner
