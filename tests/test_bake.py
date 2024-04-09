@@ -6,12 +6,13 @@ import shlex
 import subprocess
 from contextlib import contextmanager
 from pathlib import Path
+from typing import Generator
 
 from cookiecutter.utils import rmtree
 
 
 @contextmanager
-def inside_dir(dirpath: Path) -> None:
+def inside_dir(dirpath: Path) -> Generator:
     """
     Execute code from inside the given directory.
 
@@ -26,7 +27,7 @@ def inside_dir(dirpath: Path) -> None:
 
 
 @contextmanager
-def bake_in_temp_dir(cookies, *args, **kwargs) -> None:
+def bake_in_temp_dir(cookies, *args, **kwargs) -> Generator:
     """
     Delete the temporal directory that is created when executing the tests.
 
@@ -124,7 +125,7 @@ def test_bake_with_apostrophe_and_run_tests(cookies) -> None:
 
 def test_bake_selecting_license(cookies) -> None:
     license_strings = {
-        "GPL-3.0-plus": "GNU GENERAL PUBLIC LICENSE",
+        "GPL-3.0-or-later": "GNU GENERAL PUBLIC LICENSE",
         "BSD-3-Clause": "BSD 3-Clause License",
         "MIT": "MIT License",
         "Apache-2.0": "Licensed under the Apache License, Version 2.0",
