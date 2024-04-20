@@ -3,6 +3,15 @@
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
     "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter"
-    }
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.codeActionsOnSave": {
+            "source.fixAll.ruff": "explicit",
+            "source.organizeImports": "explicit",
+            "source.organizeImports.ruff": "explicit"
+        },
+        "editor.formatOnSave": true,
+        "editor.wordBasedSuggestions": "off"
+    },
+    "ruff.importStrategy": "fromEnvironment",
+    "ruff.lint.run": "onSave"
 }

@@ -1,6 +1,7 @@
 poetry.lock
 TODO.*
 .vscode
+!{{cookiecutter.project_slug}}/.vscode
 
 # Created by https://www.toptal.com/developers/gitignore/api/python
 # Edit at https://www.toptal.com/developers/gitignore?templates=python
