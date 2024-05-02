@@ -1,6 +1,5 @@
 """Post-bake customizations."""  # noqa: INP001
 
-
 import subprocess
 import sys
 from pathlib import Path
@@ -30,7 +29,7 @@ def main() -> int:  # noqa: D103
 
     print("Building Python Environment")
     run_cmd("poetry env use python{{cookiecutter.python_min_version}}")
-    run_cmd("poetry install")
+    run_cmd("poetry install --with dev")
     run_cmd("poetry run python3 -m pip install --upgrade pip wheel setuptools")
 
     print("Initializing Git repository")

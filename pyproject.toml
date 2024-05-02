@@ -20,6 +20,9 @@ package-mode = false
 python = "^3.8"
 cookiecutter = "^2.5.0"
 
+[tool.poetry.group.dev]
+optional = true
+
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.9.0"
 pytest = "^8.1.1"
