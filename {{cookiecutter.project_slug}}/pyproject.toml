@@ -60,16 +60,16 @@ python = "^{{cookiecutter.python_min_version}}"
 {%- if cookiecutter.command_line_interface|lower == 'click' %}
 click = "^8.1.7"
 {%- endif %}
-rich = "^13.7.1"
+rich = "^13.8.0"
 
 [tool.poetry.group.dev]
 optional = true
 
 [tool.poetry.group.dev.dependencies]
-mypy = "^1.9.0"
-pytest = "^8.1.1"
-ruff = "^0.4.1"
-tox = "^4.14.2"
+mypy = "^1.11.2"
+pytest = "^8.3.2"
+ruff = "^0.6.2"
+tox = "^4.18.0"
 
 [tool.ruff]
 select = [
