@@ -3,6 +3,7 @@
         "{{cookiecutter.project_slug}}",
         "{{cookiecutter.full_name.split() | join('\",\n        "')}}",
 
+        "appname",
         "rgxs",
         "POSIX",
         "pytest",

@@ -2,6 +2,8 @@
 
 from importlib.metadata import version
 
+APPNAME = "{{ cookiecutter.project_slug }}"
+
 __author__ = """{{ cookiecutter.full_name }}"""
 __email__ = "{{ cookiecutter.email }}"
 __copyright__ = "Copyright {% now 'local', '%Y' %}, {{ cookiecutter.full_name }}"

@@ -6,11 +6,11 @@
   "project_version": "0.1.0",
   "project_short_description": "Short description.",
   "python_min_version": [
-    "3.8",
     "3.9",
     "3.10",
     "3.11",
-    "3.12"
+    "3.12",
+    "3.13"
   ],
   "command_line_interface": [
     "No CLI",
