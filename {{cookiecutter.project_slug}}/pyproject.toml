@@ -1,19 +1,14 @@
-[tool.poetry]
+[project]
 name = "{{cookiecutter.project_slug}}"
 version = "{{cookiecutter.project_version}}"
 description = "{{cookiecutter.project_short_description}}"
-authors = ["{{cookiecutter.full_name}} <{{cookiecutter.email}}>"]
-license = "{{cookiecutter.license}}"
-readme = "README.md"
-# homepage = ""
-repository = "{{cookiecutter.git_url}}"
-# documentation = ""
-# keywords = [""]
-include = ["LICENSE"]
+authors = [
+    { name = "{{cookiecutter.full_name}}", email = "{{cookiecutter.email}}" },
+]
 
+keywords = []
 
 classifiers = [
-    # https://pypi.org/classifiers/
     # "Development Status :: 1 - Planning",
     # "Development Status :: 2 - Pre-Alpha",
     # "Development Status :: 3 - Alpha",
@@ -47,29 +42,37 @@ classifiers = [
     "Topic :: Software Development :: Libraries",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Utilities"
+]# https://pypi.org/classifiers/
+
+dependencies = [
+{%- if cookiecutter.command_line_interface|lower == 'click' %}
+    "click>=8.1.8",
+{%- endif %}
+    "rich>=13.9.4",
+]
+
+requires-python = ">={{cookiecutter.python_min_version}}"
+
+readme = { file = "README.md", content-type = "text/markdown" }
+license = { file = "LICENSE" }
+
+[dependency-groups]
+dev = [
+    "mypy>=1.14.1",
+    "pytest>=8.3.4",
+    "pytest-cookies>=0.7.0",
+    "pytest-runner>=6.0.1",
+    "ruff>=0.9.4",
 ]{% if cookiecutter.command_line_interface|lower != 'no cli' %}
 
-
-# https://pypi.org/classifiers/
 [tool.poetry.scripts]
 {{cookiecutter.project_slug}} = '{{cookiecutter.project_slug}}.__main__:cli_main'
 {%- endif %}
 
-[tool.poetry.dependencies]
-python = "^{{cookiecutter.python_min_version}}"
-{%- if cookiecutter.command_line_interface|lower == 'click' %}
-click = "^8.1.7"
-{%- endif %}
-rich = "^13.9.2"
-
-[tool.poetry.group.dev]
-optional = true
-
-[tool.poetry.group.dev.dependencies]
-mypy = "^1.12.1"
-pytest = "^8.3.3"
-ruff = "^0.7.0"
-tox = "^4.23.0"
+# https://packaging.python.org/en/latest/specifications/well-known-project-urls/#well-known-labels
+# https://docs.pypi.org/project_metadata/#project-urls
+[project.urls]
+Repository = "{{cookiecutter.git_url}}"
 
 [tool.ruff.lint]
 select = [
@@ -127,5 +130,5 @@ unfixable = ["F401", "F841"]
 keep-runtime-typing = true
 
 [build-system]
-requires = ["poetry-core>=1.8.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=42"]
+build-backend = "setuptools.build_meta"

@@ -1,9 +1,9 @@
 #! /usr/bin/env sh
 
 echo "Building Python Environment";
-poetry env use python{{cookiecutter.python_min_version}}
-poetry install --with=dev
-poetry run python3 -m pip install --upgrade pip setuptools
+uv python pin python{{cookiecutter.python_min_version}}
+uv sync --all-extras
+uv run python3 -m pip install --upgrade pip setuptools
 
 echo "Initializing Git repository"
 git init
