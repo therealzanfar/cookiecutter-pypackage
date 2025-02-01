@@ -71,6 +71,7 @@ def main() -> int:  # noqa: D103
         remove_file("LICENSE")
 
     run_cmd("sh setup.sh", show_output=True)
+    remove_file("setup.sh")
 
     # print("Building Python Environment")
     # run_cmd("poetry env use python{{cookiecutter.python_min_version}}")
