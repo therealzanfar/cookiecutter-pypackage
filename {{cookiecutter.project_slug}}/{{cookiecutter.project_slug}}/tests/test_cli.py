@@ -1,12 +1,11 @@
-"""Test `{{ cookiecutter.project_slug }}` package CLI tests."""
-
-{%- if cookiecutter.command_line_interface|lower == 'click' %}
+"""Test CLI."""
+{% if cookiecutter.command_line_interface|lower == 'click' %}
 from click.testing import CliRunner
 
 from {{ cookiecutter.project_slug }}.__main__ import cli_main
 
 def test_cli_click() -> None:
-    """Test the Click CLI"""
+    """Test the Click CLI."""
 
     runner = CliRunner()
     result = runner.invoke(cli_main)

@@ -6,12 +6,15 @@
         "appname",
         "rgxs",
         "POSIX",
-        "pytest",
-        "pylint",
-        "mypy",
+        "therealzanfar",
+        "zanfar",
 
-        "Cookiecutter",
+        "cookiecutter",
+        "pylint",
         "pypackage",
-        "zanfar"
+        "mypy",
+        "pytest",
+        "pyupgrade",
+        "setuptools"
     ]
 }

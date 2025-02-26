@@ -1,13 +1,10 @@
 """General CLI Settings and Methods."""
 
-
 import logging
 
 from rich.logging import RichHandler
 
-
 CLICK_CONTEXT = {"help_option_names": ["-h", "--help"]}
-
 
 
 def setup_logging(verbosity: int = 0, force: bool = False) -> None:
@@ -19,9 +16,9 @@ def setup_logging(verbosity: int = 0, force: bool = False) -> None:
             2=Info, 3+=Debug. Defaults to 0.
 
         force (bool, optional): Force the logging level to this value, even
-            if it's currently set to a more permissive value.",
-    """
+            if it's currently set to a more permissive value.
 
+    """
     logging_level = logging.ERROR
     if verbosity == 1:
         logging_level = logging.WARNING

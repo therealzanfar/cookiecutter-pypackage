@@ -12,6 +12,5 @@
         "editor.formatOnSave": true,
         "editor.wordBasedSuggestions": "off"
     },
-    "ruff.importStrategy": "fromEnvironment",
-    "ruff.lint.run": "onSave"
+    "ruff.importStrategy": "fromEnvironment"
 }

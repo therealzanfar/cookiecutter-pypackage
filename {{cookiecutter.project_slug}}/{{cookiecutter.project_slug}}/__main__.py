@@ -13,8 +13,7 @@ from {{cookiecutter.project_slug}}.cli import CLICK_CONTEXT, setup_logging
 @click.command(context_settings=CLICK_CONTEXT)
 @click.option("-v", "--verbose", count=True)
 def cli_main(verbose: int = 0) -> int:
-    "CLI Tool for {{cookiecutter.project_slug}}" ""
-
+    """CLI Help."""
     args = locals().items()
     setup_logging(verbose)
     logger = logging.getLogger(__name__)

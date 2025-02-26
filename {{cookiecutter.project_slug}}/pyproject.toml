@@ -44,12 +44,7 @@ classifiers = [
     "Topic :: Utilities"
 ]# https://pypi.org/classifiers/
 
-dependencies = [
-{%- if cookiecutter.command_line_interface|lower == 'click' %}
-    "click>=8.1.8",
-{%- endif %}
-    "rich>=13.9.4",
-]
+dependencies = [{%- if cookiecutter.command_line_interface|lower == 'click' %}"click>=8.1.8",{%- endif %}"rich>=13.9.4"]
 
 requires-python = ">={{cookiecutter.python_min_version}}"
 
@@ -65,7 +60,7 @@ dev = [
     "ruff>=0.9.4",
 ]{% if cookiecutter.command_line_interface|lower != 'no cli' %}
 
-[tool.poetry.scripts]
+[project.scripts]
 {{cookiecutter.project_slug}} = '{{cookiecutter.project_slug}}.__main__:cli_main'
 {%- endif %}
 
@@ -113,8 +108,6 @@ ignore = [
     "D212",
     "UP006",
     "UP007",
-    "ANN101",
-    "ANN102",
     "D400",
     "D406",
     "D407",
@@ -124,7 +117,7 @@ ignore = [
 unfixable = ["F401", "F841"]
 
 [tool.ruff.lint.per-file-ignores]
-"test_*.py" = ["ANN001", "ANN002", "ANN003", "D101", "D103"]
+"test_*.py" = ["ANN003", "D101", "D103"]
 
 [tool.ruff.lint.pyupgrade]
 keep-runtime-typing = true
